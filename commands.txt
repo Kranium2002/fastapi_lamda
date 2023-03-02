@@ -1,0 +1,6 @@
+python -m venv venv
+pip install uvicorn
+pip install fastapi
+pip install pymongo
+uvicorn api.main:app --reload
+pip freeze > requirements.txt
