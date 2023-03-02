@@ -12,8 +12,7 @@ col = db["col"]
 @app.get("/")
 async def root():
     return {"server is running"}
-        
-        
+                
 @app.get("/find")
 def find_all():
     results = []
