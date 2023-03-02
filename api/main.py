@@ -11,7 +11,7 @@ db = client["db1"]
 col = db["col"]
 
 @app.get("/")
-def find_all_users():
+async def root():
     return {"server is running"}
         
         
