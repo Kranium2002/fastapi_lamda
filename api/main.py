@@ -5,7 +5,6 @@ from mangum import Mangum
 
 app = FastAPI()
 
-# Connect to MongoDB Atlas
 client = MongoClient("mongodb+srv://mathurvidhu2002:hTPfNu8e26R4nyaB@cluster0.xjtky9j.mongodb.net/?retryWrites=true&w=majority")
 db = client["db1"]
 col = db["col"]
