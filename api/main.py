@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
 import uvicorn
-
+from mangum import Mangum
 
 app = FastAPI()
 
@@ -33,7 +33,5 @@ def insert_record(name1: str):
     except Exception as e:
         print(str(e))
         return {"message": "error"}
-    
-    
-if __name__ == "__main__":
-    uvicorn.run(app,port=8000)
+
+handler = Mangum(app)
