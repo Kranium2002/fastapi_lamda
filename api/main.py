@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
-import uvicorn
 from mangum import Mangum
 
 app = FastAPI()
