@@ -12,6 +12,7 @@ col = db["col"]
 @app.get("/")
 async def root():
     print("abc")
+    raise ValueError("error")
     return {"server is running"}
                 
 @app.get("/find")

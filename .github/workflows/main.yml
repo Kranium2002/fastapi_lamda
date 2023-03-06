@@ -2,7 +2,7 @@ name: FastAPI CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [stage]
 
 jobs:
   CI:
