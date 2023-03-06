@@ -1,3 +1,4 @@
+import json
 from fastapi import FastAPI
 from pymongo import MongoClient
 from mangum import Mangum
@@ -18,7 +19,10 @@ def find_all():
     results = []
     for doc in db.col.find({}, {"_id": 0}):
         results.append(doc)
-    return results
+
+    json_results = json.dumps(results)
+
+    return json_results
 
 @app.put("/insert/{name1}")
 def insert_record(name1: str):
