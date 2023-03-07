@@ -27,9 +27,9 @@ def insert_record(name1: str):
     try:
         result = db.col.insert_one(record_dict)
         print(result.inserted_id)
-        return {"message": "success"}
+        return {"messages": "success"}
     except Exception as e:
         print(str(e))
-        return {"message": "error"}
+        return {"messages": "error"}
 
 handler = Mangum(app)
