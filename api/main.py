@@ -10,8 +10,7 @@ col = db["col"]
 
 @app.get("/")
 async def root():
-    print("abc")
-    return {"server is running"}
+    return {"message":"server is running"}
                 
 @app.get("/find")
 def find_all():
@@ -30,6 +29,14 @@ def insert_record(name = Body(...)):
     except Exception as e:
         print(str(e))
         return {"message": "error"}
+    
+@app.delete("/delete")
+def delete_records(name=Body(...)):
+    result = db.col.delete_many({"name": name})
+    if result.deleted_count > 0:
+        return {"message": f"Deleted {result.deleted_count} records"}
+    else:
+        return {"message": "No records deleted"}
 
 
 handler = Mangum(app)
