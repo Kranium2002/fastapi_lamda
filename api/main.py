@@ -21,7 +21,7 @@ def find_all():
     return results
 
 @app.put("/insert")
-def insert_record(name: str = Body(...)):
+def insert_record(name = Body(...)):
     record_dict = {"name": name}
     try:
         result = db.col.insert_one(record_dict)
