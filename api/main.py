@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import Body, FastAPI
 from pymongo import MongoClient
 from mangum import Mangum
 
@@ -20,16 +20,16 @@ def find_all():
         results.append(doc)
     return results
 
-@app.put("/insert/{name1}")
-def insert_record(name1: str):
-    record_dict = dict()
-    record_dict = {"name": name1}
+@app.put("/insert")
+def insert_record(name: str = Body(...)):
+    record_dict = {"name": name}
     try:
         result = db.col.insert_one(record_dict)
         print(result.inserted_id)
-        return {"messages": "success"}
+        return {"message": "success"}
     except Exception as e:
         print(str(e))
-        return {"messages": "error"}
+        return {"message": "error"}
+
 
 handler = Mangum(app)
