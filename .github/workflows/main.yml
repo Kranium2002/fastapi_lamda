@@ -79,7 +79,7 @@ jobs:
       - name: Test the API
         run: |
           endpoint_url="https://2nlaf70rdc.execute-api.eu-west-2.amazonaws.com/insert"
-          data='{"name": "value1"}'
+          data='{"name": "valuehere"}'
           response=$(curl -s -X PUT $endpoint_url -H "Content-Type: application/json" -d "$data")
 
           if [[ $response == *"success"* ]]; then
