@@ -77,4 +77,4 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Run tests
-        run: source venv/bin/activate && pytest tests_cd/    
+        run: pytest tests_cd/    
