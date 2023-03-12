@@ -79,14 +79,17 @@ jobs:
       - name: Test the API
         run: |
           endpoint_url="https://2nlaf70rdc.execute-api.eu-west-2.amazonaws.com/insert"
-          response=$(curl -s -X PUT $endpoint_url -d '{"name": "John Doe"}')
+          data='{"name": "value1"}'
+          response=$(curl -s -X PUT $endpoint_url -H "Content-Type: application/json" -d "$data")
+
           if [[ $response == *"success"* ]]; then
-            echo "API test succeeded"
-            exit 0
+              echo "API test succeeded"
+              exit 0
           else
-            echo "API test failed"
-            exit 1
+              echo "API test failed"
+              exit 1
           fi
+
 
   
 
