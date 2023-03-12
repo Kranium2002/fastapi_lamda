@@ -76,22 +76,17 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
       
-      - name: Install dependencies for testing cd
-        run: pip install virtualenv
+      - name: Test the API
+        run: |
+          endpoint_url="https://2nlaf70rdc.execute-api.eu-west-2.amazonaws.com/insert"
+          response=$(curl -s -X PUT $endpoint_url -d '{"name": "John Doe"}')
+          if [[ $response == *"success"* ]]; then
+            echo "API test succeeded"
+            exit 0
+          else
+            echo "API test failed"
+            exit 1
+          fi
 
-      - name: Setup virtual environment
-        uses: actions/cache@v2
-        id: cache-venv
-        with:
-          path: venv
-          key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-venv-
-
-      - name: Activate virtual environment
-        run: python -m venv venv && source venv/bin/activate && pip install -r requirements.txt
-
-      - name: Run tests
-        run: source venv/bin/activate && pytest tests_cd/
   
 
