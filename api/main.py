@@ -21,7 +21,7 @@ def find_all():
 
 @app.put("/insert")
 def insert_record(name = Body(...)):
-    record_dict = {"name": name}
+    record_dict = {"name": name['name']}
     try:
         result = db.col.insert_one(record_dict)
         print(result.inserted_id)
